@@ -483,7 +483,7 @@ MonoBehaviour:
         m_MethodName: ChooseObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 100008, guid: a11d318bf37c01d489a19dc2dc33ed7d, type: 3}
+          m_ObjectArgument: {fileID: 3125680655417615934, guid: 33a20168d319b8946a774b30627af1d6, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
         m_MethodName: ChooseObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 100000, guid: d2a377b97363a554a96a26b876de1213, type: 3}
+          m_ObjectArgument: {fileID: 8223755672634796849, guid: 83cbd14b97e37d54bb61f047dba6b7f5, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
