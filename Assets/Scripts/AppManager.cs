@@ -6,6 +6,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class AppManager : MonoBehaviour
 {
+    [SerializeField] GameObject ruleScreen;
+
     [SerializeField] GameObject markerPrefab;
     [SerializeField] GameObject spawnPrefab;
     private GameObject spawnObject;
@@ -31,11 +33,13 @@ public class AppManager : MonoBehaviour
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
         SetMarker(false);
-        //menu dismiss canvas code here
     }
 
     void Update()
     {
+        if (ruleScreen.activeSelf)
+            return;
+
         if (IsObjectChosen)
         {
             SpawnObject();
@@ -127,6 +131,8 @@ public class AppManager : MonoBehaviour
     }
 
     private void SetMarker(bool choice) => markerPrefab.gameObject.SetActive(choice);
+
+    public void Dismiss() => ruleScreen.gameObject.SetActive(false);
 
     public void ChooseObject(GameObject spawnPrefab)
     {
