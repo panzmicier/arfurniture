@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -6,13 +5,17 @@ using UnityEngine.XR.ARSubsystems;
 
 public class AppManager : MonoBehaviour
 {
-    [SerializeField] GameObject ruleScreen;
-
     [SerializeField] GameObject markerPrefab;
     [SerializeField] GameObject spawnPrefab;
+    public GameObject SpawnPrefab
+    {
+        get { return spawnPrefab; }
+        set { spawnPrefab = value; }
+    }
     private GameObject spawnObject;
     private GameObject selectedObject;
 
+    private MenuManager menuManager;
     private ARRaycastManager arRaycastManager;
     private static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
     private Vector2 touchPosition;
@@ -32,12 +35,13 @@ public class AppManager : MonoBehaviour
     void Awake()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
+        menuManager = FindObjectOfType<MenuManager>();
         SetMarker(false);
     }
 
     void Update()
     {
-        if (ruleScreen.activeSelf)
+        if (menuManager.MainMenu.activeSelf || menuManager.RuleScreen.activeSelf)
             return;
 
         if (IsObjectChosen)
@@ -45,7 +49,7 @@ public class AppManager : MonoBehaviour
             SpawnObject();
         }
 
-        MoveObject();
+        MoveAndRotateObject();
     }
 
     private void SpawnObject()
@@ -62,13 +66,13 @@ public class AppManager : MonoBehaviour
 
         if (Input.touchCount > 0 && touch.phase == TouchPhase.Began)
         {
-            spawnObject = Instantiate(spawnPrefab, hitPose.position, hitPose.rotation);
+            spawnObject = Instantiate(SpawnPrefab, hitPose.position, hitPose.rotation);
             isObjectChosen = false;
             SetMarker(false);
         }
     }
 
-    private void MoveObject()
+    private void MoveAndRotateObject()
     {
         if (Input.touchCount > 0)
         {
@@ -132,19 +136,11 @@ public class AppManager : MonoBehaviour
 
     private void SetMarker(bool choice) => markerPrefab.gameObject.SetActive(choice);
 
-    public void Dismiss() => ruleScreen.gameObject.SetActive(false);
 
-    public void ChooseObject(GameObject spawnPrefab)
-    {
-        this.spawnPrefab = spawnPrefab;
-        IsObjectChosen = true;
-    }
 
-    public void CloseApp()
-    {
-        Application.Quit();
-        Debug.Log("App closed");
-    }
+
+
+
 
 
 
