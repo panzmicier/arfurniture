@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
         get { return mainMenu; }
         set { mainMenu = value; }
     }
-    [SerializeField] GameObject inAppMenu;
+
     [SerializeField] GameObject ruleScreen;
     public GameObject RuleScreen
     {
@@ -21,17 +21,6 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         appManager = FindObjectOfType<AppManager>();
-    }
-
-    public void StartApp()
-    {
-        mainMenu.gameObject.SetActive(false);
-        ruleScreen.gameObject.SetActive(true);
-    }
-    public void Dismiss()
-    {
-        ruleScreen.gameObject.SetActive(false);
-        inAppMenu.gameObject.SetActive(true);
     }
 
     public void ChooseObject(GameObject spawnPrefab)

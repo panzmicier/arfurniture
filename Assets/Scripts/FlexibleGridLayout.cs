@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,8 +61,8 @@ public class FlexibleGridLayout : LayoutGroup
 
             var item = rectChildren[i];
 
-            var xPos = (cellSize.x + spacing.x + padding.left) * columnCount;
-            var yPos = (cellSize.y + spacing.y + padding.top) * rowCount;
+            var xPos = (cellSize.x +spacing.x) * columnCount + padding.left;
+            var yPos = (cellSize.y + spacing.y) * rowCount + padding.top;
 
             SetChildAlongAxis(item, 0, xPos, cellSize.x);
             SetChildAlongAxis(item, 1, yPos, cellSize.y);
